@@ -17,6 +17,10 @@ const gameArea = {
     this.canvas.height = 600;
     this.context = this.canvas.getContext('2d');
     document.querySelector('.wrapper').appendChild(this.canvas);
+    // - this.interval calls the redrawGameArea function,
+    //   which results in the the "re-drawing" of the gameArea
+    //   50 times per second.
+    this.interval = setInterval(redrawGameArea, 20);
   },
   // - Clears entire game area (the <canvas>).
   clear: function () {
@@ -55,4 +59,11 @@ function Character(charXOrigin, charYOrigin, charWidth, charHeight, charColor) {
       this.charHeight
     );
   };
+}
+
+// - Main function to call in order to clear gameArea
+//   and "re-draw" character.
+function redrawGameArea() {
+  gameArea.clear();
+  character.update();
 }
