@@ -1,4 +1,4 @@
-const gameWrapper = document.querySelector('.wrapper');
+const gameWrapper = document.querySelector('.game-wrapper');
 
 window.addEventListener('DOMContentLoaded', startGame);
 
@@ -16,7 +16,7 @@ const gameArea = {
     this.canvas.width = 600;
     this.canvas.height = 600;
     this.context = this.canvas.getContext('2d');
-    document.querySelector('.wrapper').appendChild(this.canvas);
+    gameWrapper.appendChild(this.canvas);
     // - this.interval calls the redrawGameArea function,
     //   which results in the the "re-drawing" of the gameArea
     //   50 times per second.
@@ -65,5 +65,6 @@ function Character(charXOrigin, charYOrigin, charWidth, charHeight, charColor) {
 //   and "re-draw" character.
 function redrawGameArea() {
   gameArea.clear();
+  console.log('redrawGameArea is running!');
   character.update();
 }
