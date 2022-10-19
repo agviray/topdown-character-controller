@@ -18,6 +18,10 @@ const gameArea = {
     this.context = this.canvas.getContext('2d');
     document.querySelector('.wrapper').appendChild(this.canvas);
   },
+  // - Clears entire game area (the <canvas>).
+  clear: function () {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  },
 };
 
 // - Constructor for creating an instance of a
@@ -39,7 +43,8 @@ function Character(charXOrigin, charYOrigin, charWidth, charHeight, charColor) {
     this.charHeight
   );
 
-  // - Updates "re-drawing" of character, similar to frame rate.
+  // - Updates "re-drawing" of character--similar to
+  //   frames per second (fps) in a video game.
   this.update = function () {
     ctx = gameArea.context;
     ctx.fillStyle = charColor;
