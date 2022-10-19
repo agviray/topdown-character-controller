@@ -2,8 +2,11 @@ const gameWrapper = document.querySelector('.wrapper');
 
 window.addEventListener('DOMContentLoaded', startGame);
 
+let character;
+
 function startGame() {
   gameArea.start();
+  character = new Character(20, 20, 50, 50, '#754c99');
 }
 
 // - Ojbect that contains game functionality.
@@ -24,6 +27,8 @@ function Character(charXOrigin, charYOrigin, charWidth, charHeight, charColor) {
   this.charYOrigin = charYOrigin;
   this.charWidth = charWidth;
   this.charHeight = charHeight;
+
+  // - Displays character at provided position, and also determines character appearance.
   ctx = gameArea.context;
   ctx.fillStyle = charColor;
   ctx.fillRect(
