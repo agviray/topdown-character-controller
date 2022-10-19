@@ -16,3 +16,20 @@ const gameArea = {
     document.querySelector('.wrapper').appendChild(this.canvas);
   },
 };
+
+// - Constructor for creating an instance of a
+//   character--ie, you, the user/player.
+function Character(charXOrigin, charYOrigin, charWidth, charHeight, charColor) {
+  this.charXOrigin = charXOrigin;
+  this.charYOrigin = charYOrigin;
+  this.charWidth = charWidth;
+  this.charHeight = charHeight;
+  ctx = gameArea.context;
+  ctx.fillStyle = charColor;
+  ctx.fillRect(
+    this.charXOrigin,
+    this.charYOrigin,
+    this.charWidth,
+    this.charHeight
+  );
+}
