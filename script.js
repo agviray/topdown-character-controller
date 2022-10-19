@@ -28,7 +28,8 @@ function Character(charXOrigin, charYOrigin, charWidth, charHeight, charColor) {
   this.charWidth = charWidth;
   this.charHeight = charHeight;
 
-  // - Displays character at provided position, and also determines character appearance.
+  // - Displays character at provided position, and also determines
+  //   character appearance.
   ctx = gameArea.context;
   ctx.fillStyle = charColor;
   ctx.fillRect(
@@ -37,4 +38,16 @@ function Character(charXOrigin, charYOrigin, charWidth, charHeight, charColor) {
     this.charWidth,
     this.charHeight
   );
+
+  // - Updates "re-drawing" of character, similar to frame rate.
+  this.update = function () {
+    ctx = gameArea.context;
+    ctx.fillStyle = charColor;
+    ctx.fillRect(
+      this.charXOrigin,
+      this.charYOrigin,
+      this.charWidth,
+      this.charHeight
+    );
+  };
 }
