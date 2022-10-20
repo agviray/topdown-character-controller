@@ -87,8 +87,24 @@ function Character(charXOrigin, charYOrigin, charWidth, charHeight, charColor) {
 //   and "re-draw" character.
 function redrawGameArea() {
   gameArea.clear();
-  // **********************************************************
-  // - Call newPosition() to change character's position here!
-  // **********************************************************
+  // - Move character left.
+  if (gameArea.key && gameArea.key === 37) {
+    character.speedX = -1;
+  }
+  // - Move character up.
+  if (gameArea.key && gameArea.key === 38) {
+    character.speedY = -1;
+  }
+  // - Move character right.
+  if (gameArea.key && gameArea.key === 39) {
+    character.speedX = 1;
+  }
+  // - Move character down.
+  if (gameArea.key && gameArea.key === 40) {
+    character.speedY = 1;
+  }
+  // - Calling newPosition here update the character's position (if any
+  //   arrow keys were pressed) on the next redraw of the gameArea.
+  character.newPosition();
   character.update();
 }
