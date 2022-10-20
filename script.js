@@ -21,6 +21,17 @@ const gameArea = {
     //   which results in the the "re-drawing" of the gameArea
     //   50 times per second.
     this.interval = setInterval(redrawGameArea, 20);
+    // - The 'keydown' event handler will set the pressed key code
+    //    as the 'key' property value of the gameArea object.
+    window.addEventListener('keydown', function (e) {
+      gameArea.key = e.keyCode;
+    });
+    // - The 'keyup' event handler will update the gameArea's 'key'
+    //   property, giving it a value of false.
+    // - This means that a key is not being pressed.
+    window.addEventListener('keyup', function (e) {
+      gameArea.key = false;
+    });
   },
   // - Clears entire game area (the <canvas>).
   clear: function () {
