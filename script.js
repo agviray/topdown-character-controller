@@ -6,7 +6,15 @@ let character;
 
 function startGame() {
   gameArea.start();
-  character = new Character(10, 10, 30, 30, '#754c99');
+  const gameAreaWidth = gameArea.canvas.width;
+  const gameAreaHeight = gameArea.canvas.height;
+  character = new Character(
+    gameAreaWidth / 2 - 15,
+    gameAreaHeight / 2 - 15,
+    30,
+    30,
+    '#754c99'
+  );
 }
 
 // - Ojbect that contains the main game area functionality.
