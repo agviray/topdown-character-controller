@@ -87,6 +87,10 @@ function Character(charXOrigin, charYOrigin, charWidth, charHeight, charColor) {
 //   and "re-draw" character.
 function redrawGameArea() {
   gameArea.clear();
+  // - Set  character's speedX and speedY to 0 on
+  //   every redraw.
+  character.speedX = 0;
+  character.speedY = 0;
   // - Move character left.
   if (gameArea.key && gameArea.key === 37) {
     character.speedX = -1;
