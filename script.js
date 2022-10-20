@@ -33,6 +33,10 @@ const gameArea = {
 function Character(charXOrigin, charYOrigin, charWidth, charHeight, charColor) {
   this.charXOrigin = charXOrigin;
   this.charYOrigin = charYOrigin;
+  // - The 2 properties, speedX and speedY, represent the
+  //   character's speed along the horizontal and vertical axises.
+  this.speedX = 0;
+  this.speedY = 0;
   this.charWidth = charWidth;
   this.charHeight = charHeight;
 
@@ -59,12 +63,21 @@ function Character(charXOrigin, charYOrigin, charWidth, charHeight, charColor) {
       this.charHeight
     );
   };
+
+  // - newPosition changes the character's position by
+  //   using its own speedX and speedY properties.
+  this.newPosition = function () {
+    this.charXOrigin += this.speedX;
+    this.charYOrigin += this.speedY;
+  };
 }
 
 // - Main function to call in order to clear gameArea
 //   and "re-draw" character.
 function redrawGameArea() {
   gameArea.clear();
-  console.log('redrawGameArea is running!');
+  // **********************************************************
+  // - Call newPosition() to change character's position here!
+  // **********************************************************
   character.update();
 }
