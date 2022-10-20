@@ -29,16 +29,25 @@ const gameArea = {
     //   which results in the the "re-drawing" of the gameArea
     //   50 times per second.
     this.interval = setInterval(redrawGameArea, 20);
-    // - The 'keydown' event handler will set the pressed key code
-    //    as the 'key' property value of the gameArea object.
+    // - Set an array (gameArea.keys) which accounts for pressed keys, by giving a boolean
+    //   true status for each key that is pressed.
+    // - The gameArea.keys array will be referenced to determine if the
+    //   character is to be moved diagonally (if multiple keys are pressed).
+
+    // - For example, the status of a key or keys pressed will remain true for
+    //   every redraw, until the keyup event runs on that pressed key.
+    // - This results in the character continuously moving the intended direction,
+    //   whether it be straight or diagonal, until otherwise halted by the keyup
+    //   event firing on a given key.
     window.addEventListener('keydown', function (e) {
-      gameArea.key = e.keyCode;
+      gameArea.keys = gameArea.keys || [];
+      gameArea.keys[e.keyCode] = true;
     });
-    // - The 'keyup' event handler will update the gameArea's 'key'
-    //   property, giving it a value of false.
-    // - This means that a key is not being pressed.
+    // - Detect when a key out of many keys is no longer being pressed.
+    // - This enables the character to shift movement types smoothly--ie
+    //   from moving straight to diagonal.
     window.addEventListener('keyup', function (e) {
-      gameArea.key = false;
+      gameArea.keys[e.keyCode] = false;
     });
   },
   // - Clears entire game area (the <canvas>).
@@ -100,19 +109,19 @@ function redrawGameArea() {
   character.speedX = 0;
   character.speedY = 0;
   // - Move character left.
-  if (gameArea.key && gameArea.key === 37) {
+  if (gameArea.keys && gameArea.keys[37]) {
     character.speedX = -1;
   }
   // - Move character up.
-  if (gameArea.key && gameArea.key === 38) {
+  if (gameArea.keys && gameArea.keys[38]) {
     character.speedY = -1;
   }
   // - Move character right.
-  if (gameArea.key && gameArea.key === 39) {
+  if (gameArea.keys && gameArea.keys[39]) {
     character.speedX = 1;
   }
   // - Move character down.
-  if (gameArea.key && gameArea.key === 40) {
+  if (gameArea.keys && gameArea.keys[40]) {
     character.speedY = 1;
   }
   // - Calling newPosition here update the character's position (if any
