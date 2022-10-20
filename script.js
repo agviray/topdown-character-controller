@@ -6,10 +6,10 @@ let character;
 
 function startGame() {
   gameArea.start();
-  character = new Character(20, 20, 50, 50, '#754c99');
+  character = new Character(10, 10, 30, 30, '#754c99');
 }
 
-// - Ojbect that contains game functionality.
+// - Ojbect that contains the main game area functionality.
 const gameArea = {
   canvas: document.createElement('canvas'),
   start: function () {
